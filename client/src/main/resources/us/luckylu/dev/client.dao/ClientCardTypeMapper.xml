@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="us.luckylu.dev.client.dao.ClientCardTypeMapper">
+    <insert id="insert">
+        INSERT INTO cardtype(ct_name,fine_price) VALUES(?,?)
+    </insert>
+    <update id="updateByPrice">
+        UPDATE cardtype SET fine_price = ? WHERE ct_id = ?
+    </update>
+    <delete id="delete">
+        DELETE FROM cardtype WHERE ct_id IN (SELECT ct_id FROM CLIENT WHERE cli_status = 0) AND ct_id = ?
+    </delete>
+    <select id="findAll" resultType="us.luckylu.dev.client.model.CardType">
+        SELECT ct_id,ct_name,fine_price FROM cardtype
+    </select>
+</mapper>

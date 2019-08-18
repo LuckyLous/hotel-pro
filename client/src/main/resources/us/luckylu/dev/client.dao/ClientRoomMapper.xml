@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="us.luckylu.dev.client.dao.ClientRoomMapper">
+    <insert id="insert">
+        INSERT INTO room(rt_id,room_name) VALUES(?,?)
+
+    </insert>
+    <update id="update">
+      UPDATE room set rt_id=?,room_name=? WHERE room_id = ?
+    </update>
+    <delete id="delete">
+        DELETE FROM room WHERE room_id = ?
+    </delete>
+    <select id="list" resultType="us.luckylu.dev.client.model.Room">
+        SELECT
+          room_id,room_name,room_status,rt_name,rt_price,rt_desc
+        FROM
+          room r, roomtype rt
+        WHERE r.rt_id = rt.rt_id
+        <where>
+            <if test="${}">
+                AND room_name LIKE '%"+ room.getRoomName() +"%'
+            </if>
+            <if test="">
+                AND room_status = "+ room.getRoomStatus() +"
+            </if>
+            <if test="">
+                AND rt_name = '"+ room.getRoomType().getRoomTypeName() +"'
+            </if>
+        </where>
+        ORDER BY room_name
+    </select>
+</mapper>

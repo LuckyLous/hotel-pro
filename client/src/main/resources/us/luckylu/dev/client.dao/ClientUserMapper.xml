@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="us.luckylu.dev.client.dao.ClientUserMapper">
+    <select id="test" resultType="us.luckylu.dev.model.User">
+      SELECT cli_id,cli_name,cli_sex,cli_phone,card_number,cli_status,advance_pay,ct_name,fine_price
+      FROM client c, cardtype ct WHERE c.ct_id=ct.ct_id
+      <where>
+          <if test="${phone != null}">
+            AND cli_phone like '%"+ #{phone} +"%'
+          </if>
+          <if test="${cartNumber != null}">
+              AND card_number like '%"+ #{cartNumber} +"%'
+          </if>
+          <if test="${status != null}">
+              AND cli_status like '%"+ #{status} +"%'
+          </if>
+      </where>
+    </select>
+
+    <select id="findUserById" parameterType="integer" resultType="us.luckylu.dev.model.User">
+		select *
+		from t_user
+		where id = #{v}
+	</select>
+
+    <select id="findUserByName" parameterType="string" resultType="us.luckylu.dev.model.User">
+        <where>
+            SELECT *
+            FROM t_user
+            WHERE
+            user_name LIKE  "%"#{user_name}"%"
+        </where>
+    </select>
+    <select id="login" resultType="us.luckylu.dev.model.User">
+		SELECT user_name,password,ut_name
+		FROM user As u JOIN usertype AS ut
+		ON u.ut_id = ut.ut_id
+		WHERE user_name = ? AND password = ?
+	</select>
+
+    <insert id="saveUser" parameterType="us.luckylu.dev.model.User">
+		insert into
+			t_user(user_name,password,phone,email,real_name,sex,remark,register_date)
+		values
+			(#{user_name},#{password},#{phone},#{email},#{real_name},#{sex},#{remark},#{register_date})
+	</insert>
+
+    <update id="updateUser" parameterType="us.luckylu.dev.model.User" >
+		update t_user
+		set
+			user_name=#{user_name},password=#{password},phone=#{phone},email=#{email},#{real_name},remark=#{remark}
+		where id = #{id}
+	</update>
+
+    <delete id="deleteUser" parameterType="integer" >
+		delete from t_user
+		where id = #{v}
+	</delete>
+</mapper>

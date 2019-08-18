@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>${parentGroupId}</groupId>
+        <artifactId>${parentArtifactId}</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>platform</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>platform</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>us.luckylu.dev.platform.PlatformApplication</start-class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>us.luckylu.dev</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>supervisor-${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <!-- 支持springMVC -->
+                            <springmvc>false</springmvc>
+                            <!-- 你的web项目Controller包名 -->
+                            <locations>us.wili.dev.admin.controller</locations>
+                            <!-- 协议 -->
+                            <schemes>http,https</schemes>
+                            <!-- 所在主机，可以为空 -->
+                            <host>localhost:8030</host>
+                            <!-- web项目Context Path -->
+                            <basePath>/api</basePath>
+                            <!-- 必须！要在主页显示你的API的整体信息的，相当于是标题 -->
+                            <info>
+                                <title>文档搜索器</title>
+                                <version>v1</version>
+                                <description>
+                                    文档搜索器-API
+                                </description>
+                            </info>
+                            <!-- 模板位置，支持classpath:类型路径 -->
+                            <templatePath>${project.basedir}/src/main/resources/templates/strapdown.html.hbs</templatePath>
+                            <!-- 编译期扫描controller之后合成的API文档输出位置 -->
+                            <outputPath>${project.basedir}/src/main/resources/generated/document.html</outputPath>
+                            <swaggerDirectory>${basedir}/src/main/resources/generated/swagger-ui</swaggerDirectory>
+
+                        </apiSource>
+                    </apiSources>
+                </configuration>
+                <!-- 这里很重要，简单说就是配置在maven的compile生命周期执行时触发swagger插件的generate命令 -->
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

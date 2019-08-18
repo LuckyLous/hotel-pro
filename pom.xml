@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>${parentGroupId}</groupId>
+    <artifactId>${parentArtifactId}</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>hotel-pro</name>
+    <url>http://maven.apache.org</url>
+
+    <modules>
+        <!--前台-->
+        <module>client</module>
+        <!--后台-->
+        <module>platform</module>
+        <!--通用模块-->
+        <module>mybatis-generator</module>
+        <module>common</module>
+        <module>model</module>
+        <module>dao</module>
+        <module>exception</module>
+        <module>service</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compile.plugin.version>3.6.0</maven.compile.plugin.version>
+        <parentGroupId>us.luckylu.dev</parentGroupId>
+        <parentArtifactId>hotel-pro</parentArtifactId>
+
+        <!--dependency version -->
+        <alipay-sdk-version>3.4.27.ALL</alipay-sdk-version>
+        <alidayu.java.sdk.version>1.0.0</alidayu.java.sdk.version>
+        <aliyun.sdk.core.version>3.3.1</aliyun.sdk.core.version>
+        <aliyun.sdk.dysmsapi.version>1.0.0</aliyun.sdk.dysmsapi.version>
+        <aliyun.java.sdk.core>3.7.1</aliyun.java.sdk.core>
+        <aliyun.java.sdk.vod>2.15.0</aliyun.java.sdk.vod>
+        <common.io.version>2.4</common.io.version>
+        <commons.lang.version>3.7</commons.lang.version>
+        <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
+        <druid.version>1.0.9</druid.version>
+        <fastjson.version>1.2.54</fastjson.version>
+        <elastricsearch.version>2.4.6</elastricsearch.version>
+
+        <httpclient.version>4.5.2</httpclient.version>
+        <jackson.version>2.9.8</jackson.version>
+        <jest.version>5.3.3</jest.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <logback.version>1.1.7</logback.version>
+        <lombok.version>1.18.0</lombok.version>
+        <lit.jdbc.version>2.1</lit.jdbc.version>
+        <mybatis.generator.version>1.3.7</mybatis.generator.version>
+        <mybatis.spring.version>1.3.0</mybatis.spring.version>
+        <mybatis.typehandlers.version>1.0.2</mybatis.typehandlers.version>
+        <mysql.version>5.1.30</mysql.version>
+
+        <org.freemarker.version>2.3.23</org.freemarker.version>
+        <poi.version>3.17</poi.version>
+        <qiniu.version>7.2.6</qiniu.version>
+        <qcloud.cos.version>4.4</qcloud.cos.version>
+
+        <servlet.api.version>3.0.1</servlet.api.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <spring.cloud.version>1.3.0.RELEASE</spring.cloud.version>
+        <spring.rabbit.version>1.7.1.RELEASE</spring.rabbit.version>
+        <spring.session.version>1.3.0.RELEASE</spring.session.version>
+        <springboot.starter.mapper.version>1.1.0</springboot.starter.mapper.version>
+        <springfox.swagger2>2.9.2</springfox.swagger2>
+        <swagger.bootstrap.ui>1.6</swagger.bootstrap.ui>
+
+        <wechat.sdk.version>3.2.0</wechat.sdk.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--mybatis与springBoot整合 start -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+            <!--mybatis与springBoot整合 end -->
+            <!--servlet start (tomcat embedded -> provided) -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--servlet end -->
+            <!-- json序列化 start -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- 拓展：支持LocalDateTime  -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- json序列化 end -->
+            <!-- json操作 start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- json操作 end -->
+
+            <!-- dataSource start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- dataSource end -->
+            <!-- mysql driver start -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- mysql driver end -->
+            <!-- generator-generator-core -->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis.generator.version}</version>
+            </dependency>
+            <!-- generator-generator-core end -->
+            <!-- generator LocateTime格式转换 start -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>${mybatis.typehandlers.version}</version>
+            </dependency>
+            <!-- generator LocateTime格式转换 end -->
+            <!-- mybatis-jpa start -->
+            <dependency>
+                <groupId>com.github.liulus</groupId>
+                <artifactId>lit-jdbc</artifactId>
+                <version>${lit.jdbc.version}</version>
+            </dependency>
+            <!-- mybatis-jpa end -->
+
+            <!-- elastricsearch start-->
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elastricsearch.version}</version>
+            </dependency>
+            <!-- elastricsearch end -->
+            <!--spring rabbitmq start-->
+            <dependency>
+                <groupId>org.springframework.amqp</groupId>
+                <artifactId>spring-rabbit</artifactId>
+                <version>${spring.rabbit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${codehaus.jackson.version}</version>
+            </dependency>
+            <!--spring rabbitmq end-->
+
+            <!-- elastricsearch jest start-->
+            <dependency>
+                <groupId>io.searchbox</groupId>
+                <artifactId>jest</artifactId>
+                <version>${jest.version}</version>
+            </dependency>
+            <!-- elastricsearch jest end-->
+
+            <!--swagger2 start-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.swagger2}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.swagger2}</version>
+            </dependency>
+            <!--swagger2 end-->
+
+            <!-- alipay-sdk-java start -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay-sdk-version}</version>
+            </dependency>
+            <!-- alipay-sdk-java end -->
+            <!--阿里云通信 start-->
+            <dependency>
+                <groupId>com.taobao.api</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun.sdk.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.taobao.api</groupId>
+                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                <version>${aliyun.sdk.dysmsapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.taobao.api</groupId>
+                <artifactId>alidayu-java-sdk</artifactId>
+                <version>${alidayu.java.sdk.version}</version>
+            </dependency>
+            <!--阿里云通信 end-->
+            <!-- 阿里云vod start -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun.java.sdk.core}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-vod</artifactId>
+                <version>${aliyun.java.sdk.vod}</version>
+            </dependency>
+            <!-- 阿里云vod end -->
+            <!-- 微信SDK start -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${wechat.sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${wechat.sdk.version}</version>
+            </dependency>
+            <!-- 微信SDK end -->
+
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
+            </dependency>
+
+            <!-- junit start -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- junit end -->
+            <!-- common-io start-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${common.io.version}</version>
+            </dependency>
+            <!-- common-io end -->
+            <!-- common-lang3 start -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+            <!-- common-lang3 end -->
+            <!-- poi start -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <!-- poi end -->
+            <!-- httpclient start -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <!-- httpclient end -->
+            <!--freemarker start -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${org.freemarker.version}</version>
+            </dependency>
+            <!--freemarker end -->
+            <!-- 对象存储 七牛云、腾讯云 start -->
+            <dependency>
+                <groupId>com.qiniu</groupId>
+                <artifactId>qiniu-java-sdk</artifactId>
+                <version>${qiniu.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.qcloud</groupId>
+                <artifactId>cos_api</artifactId>
+                <version>${qcloud.cos.version}</version>
+            </dependency>
+            <!-- 对象存储 end -->
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compile.plugin.version}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
