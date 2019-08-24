@@ -1,7 +1,8 @@
 package us.luckylu.dev.client.model.bo;
 
-import io.searchbox.annotations.JestId;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import us.luckylu.dev.common.base.BaseModelWithId;
 
 import java.time.LocalDateTime;
 
@@ -10,15 +11,14 @@ import java.time.LocalDateTime;
  * @create 2019-03-26 9:49
  */
 @Data
-public class Article {
+@AllArgsConstructor
+public class Article extends BaseModelWithId {
 
-    @JestId
-    private int id;
     private String title;
     private String content;
     private String url;
 
-    private LocalDateTime pubdate;
+    private LocalDateTime publishdate;
     private String source;
     private String author;
 
@@ -26,13 +26,4 @@ public class Article {
         super();
     }
 
-    public Article(int id, String title, String content, String url, LocalDateTime pubdate, String source, String author) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.url = url;
-        this.pubdate = pubdate;
-        this.source = source;
-        this.author = author;
-    }
 }

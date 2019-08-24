@@ -14,4 +14,11 @@ public class Constant {
 
 
     }
+
+    public static class Person{
+        public static final String INDEX_NAME = "person";
+
+        public static final String TYPE_NAME = "person";
+
+    }
 }

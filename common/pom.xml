@@ -125,12 +125,6 @@
         </dependency>
         <!-- generator locateTime格式转换 end -->
 
-        <!-- elastricsearch jest start-->
-        <dependency>
-            <groupId>io.searchbox</groupId>
-            <artifactId>jest</artifactId>
-        </dependency>
-        <!-- elastricsearch jest end-->
 
         <!--swagger2 start-->
         <dependency>
@@ -149,7 +143,18 @@
             <artifactId>elasticsearch</artifactId>
         </dependency>
         <!-- elastricsearch end -->
-
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        </dependency>-->
         <!-- alipay-sdk-java start -->
         <dependency>
             <groupId>com.alipay.sdk</groupId>
