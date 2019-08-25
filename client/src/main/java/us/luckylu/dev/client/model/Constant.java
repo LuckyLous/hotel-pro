@@ -21,4 +21,11 @@ public class Constant {
         public static final String TYPE_NAME = "person";
 
     }
+
+    public static class Film{
+        public static final String INDEX_NAME = "film";
+
+        public static final String TYPE_NAME = "dongzuo";
+
+    }
 }

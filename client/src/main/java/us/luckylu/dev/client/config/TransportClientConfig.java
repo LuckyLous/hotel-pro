@@ -28,6 +28,8 @@ public class TransportClientConfig {
 
     public String clusterName = "";
 
+    public String analyzer;
+
     private Settings.Builder settings = Settings.builder().put("cluster.name", clusterName);
 
     @Bean(name = "transportClient")

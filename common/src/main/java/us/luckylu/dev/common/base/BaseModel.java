@@ -19,6 +19,10 @@ public class BaseModel {
 
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;
+
+    protected String createName;
+    protected String updateName;
+
     protected Long version;
 
     public Long createdAtToUnixtime() {

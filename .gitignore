@@ -7,7 +7,6 @@
 
 /logs
 */logs
-/target
 */target
 *.private.properties
 mybatisGeneratorConfiguration.xml

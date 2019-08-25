@@ -2,27 +2,22 @@ package us.luckylu.dev.client.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.elasticsearch.action.bulk.BulkRequestBuilder;
-import org.elasticsearch.action.bulk.BulkResponse;
-import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermsQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import us.luckylu.dev.client.model.Constant;
-import us.luckylu.dev.client.model.bo.Person;
 import us.luckylu.dev.client.model.req.es.PersonListReq;
+import us.luckylu.dev.client.service.EsService;
 import us.luckylu.dev.common.model.dto.rsp.ResponseDto;
 import us.luckylu.dev.common.util.ResponseUtil;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,11 +33,13 @@ public class IndexController {
     @Resource
     private TransportClient client;
 
+    @Resource
+    private EsService esService;
+
     @ApiOperation(value = "新增")
     @PostMapping("create")
-    public ResponseDto batchCreate(@Validated @RequestBody PersonListReq req) throws IOException {
-        BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
-
+    public ResponseDto batchCreate(@Validated @RequestBody PersonListReq req) throws Exception {
+        /*BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
         for (Person person : req.getPersonList()) {
             IndexRequestBuilder indexRequestBuilder = client.prepareIndex(Constant.Person.INDEX_NAME, Constant.Person.TYPE_NAME).setSource(
                     XContentFactory.jsonBuilder()
@@ -59,7 +56,9 @@ public class IndexController {
         BulkResponse response = bulkRequestBuilder.get();
         if(response.hasFailures()) {
             System.out.println("操作失败");
-        }
+        }*/
+        int i = 1;
+        esService.testIndex();
 //        System.out.println("status"+response.status());
 //        System.out.println("type"+response.getType());
 //        System.out.println("id"+response.getId());
@@ -71,8 +70,8 @@ public class IndexController {
     @GetMapping("list")
     public ResponseDto list() throws Exception {
         // 构造search request .在这里无参，查询全部索引
-        SearchRequest searchRequest  = new SearchRequest(Constant.Person.INDEX_NAME);
-        searchRequest.types(Constant.Person.TYPE_NAME);
+        SearchRequest searchRequest  = new SearchRequest(Constant.Film.INDEX_NAME);
+        searchRequest.types(Constant.Film.TYPE_NAME);
 
         // 大多数查询参数要写在searchSourceBuilder里
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
