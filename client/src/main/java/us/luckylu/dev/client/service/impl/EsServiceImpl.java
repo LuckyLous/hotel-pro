@@ -159,7 +159,7 @@ public class EsServiceImpl implements EsService {
      * 多字段分词查询
      * @throws Exception
      */
-    public void search2()throws Exception{
+    public void searchAnalyzer()throws Exception{
         SearchRequestBuilder srb=client.prepareSearch("film2").setTypes("dongzuo");
         SearchResponse sr=srb.setQuery(QueryBuilders.multiMatchQuery("非洲星球铁拳", "title","content").analyzer(config.getAnalyzer()))
                 .setFetchSource(new String[]{"title","price"}, null)
@@ -175,7 +175,7 @@ public class EsServiceImpl implements EsService {
      * 分页查询
      * @throws Exception
      */
-    public void searching()throws Exception{
+    public void paginate()throws Exception{
         SearchRequestBuilder srb=client.prepareSearch("film").setTypes("dongzuo");
         SearchResponse sr=srb.setQuery(QueryBuilders.matchAllQuery())
                 .setFrom(1)
@@ -242,17 +242,21 @@ public class EsServiceImpl implements EsService {
      */
     public void searchHighlight()throws Exception{
         SearchRequestBuilder srb=client.prepareSearch("film").setTypes("dongzuo");
-        HighlightBuilder highlightBuilder=new HighlightBuilder();
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
         highlightBuilder.preTags("<h2><font>");
-        highlightBuilder.postTags("</font></h2>");
-        highlightBuilder.field("title");
-        SearchResponse sr=srb.setQuery(QueryBuilders.matchQuery("title", "战"))
+        highlightBuilder.postTags("</h2></font>");
+        highlightBuilder.field("content");
+
+        SearchResponse searchResponse = srb.setQuery(
+                QueryBuilders.matchQuery("title", "战"))
+//                    QueryBuilders.matchQuery("content", "星球"))
                 .highlighter(highlightBuilder)
-                .setFetchSource(new String[]{"title","price"}, null)
+                .setFetchSource(new String[]{"title", "content", "price"}, null)
                 .execute()
                 .actionGet();
-        SearchHits hits=sr.getHits();
-        for(SearchHit hit:hits){
+
+        SearchHits hits = searchResponse.getHits();
+        for (SearchHit hit : hits) {
             System.out.println(hit.getSourceAsString());
             System.out.println(hit.getHighlightFields());
         }

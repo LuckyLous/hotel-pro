@@ -57,7 +57,6 @@ public class IndexController {
         if(response.hasFailures()) {
             System.out.println("操作失败");
         }*/
-        int i = 1;
         esService.testIndex();
 //        System.out.println("status"+response.status());
 //        System.out.println("type"+response.getType());
@@ -108,4 +107,81 @@ public class IndexController {
         return ResponseUtil.getSuccessRsp();
     }
 
+    @ApiOperation(value = "详情")
+    @GetMapping("testGet")
+    public ResponseDto testGet() throws Exception {
+        esService.testGet();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "删除")
+    @DeleteMapping("testDelete")
+    public ResponseDto testDelete() throws Exception {
+        esService.testDelete();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "更新")
+    @PutMapping("testUpdate")
+    public ResponseDto testUpdate() throws Exception {
+        esService.testUpdate();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+
+    @ApiOperation(value = "列表")
+    @GetMapping("searchAll")
+    public ResponseDto searchAll() throws Exception {
+        esService.searchAll();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("paginateFilm")
+    public ResponseDto paginateFilm() throws Exception {
+        esService.paginate();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("searchSort")
+    public ResponseDto searchSort() throws Exception {
+        esService.searchSort();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("searchInclude")
+    public ResponseDto searchInclude() throws Exception {
+        esService.searchInclude();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("searchByCondition")
+    public ResponseDto searchByCondition() throws Exception {
+        esService.searchByCondition();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("searchHighlight")
+    public ResponseDto searchHighlight() throws Exception {
+        esService.searchHighlight();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("search")
+    public ResponseDto search() throws Exception {
+        esService.search();
+        return ResponseUtil.getSuccessRsp();
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping("searchAnalyzer")
+    public ResponseDto searchAnalyzer() throws Exception {
+        esService.searchAnalyzer();
+        return ResponseUtil.getSuccessRsp();
+    }
 }

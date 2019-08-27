@@ -141,7 +141,7 @@ public class ServerErrorController implements ErrorController {
 
         Object exception = request.getAttribute("javax.servlet.error.exception");
         if (exception instanceof BaseException) {
-            responseDto.setErrCode(((BaseException) exception).getCode());
+            responseDto.setCode(((BaseException) exception).getCode());
             responseDto.setMessage(((BaseException) exception).getMessage());
             return responseDto;
         }
@@ -150,13 +150,13 @@ public class ServerErrorController implements ErrorController {
             Throwable cause = ((NestedServletException) exception).getCause();
 
             if (cause instanceof BaseException) {
-                responseDto.setErrCode(((BaseException) cause).getCode());
+                responseDto.setCode(((BaseException) cause).getCode());
                 responseDto.setMessage(((BaseException) cause).getMessage());
                 return responseDto;
             }
         }
 
-        responseDto.setErrCode(BaseExceptionEnum.SYSTEM_BUSY.getCode());
+        responseDto.setCode(BaseExceptionEnum.SYSTEM_BUSY.getCode());
         responseDto.setMessage(String.format("%s:%s", body.get("status"), body.get("error")));
         return responseDto;
     }

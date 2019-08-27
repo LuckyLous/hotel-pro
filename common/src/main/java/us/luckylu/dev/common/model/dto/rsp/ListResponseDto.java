@@ -15,7 +15,7 @@ import java.util.List;
 public class ListResponseDto<T> {
 
     @ApiModelProperty(value = "状态")
-    private Integer errCode = 200;
+    private Integer code = 200;
 
     @ApiModelProperty(value = "响应信息")
     private String message;

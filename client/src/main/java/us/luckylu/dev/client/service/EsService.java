@@ -18,9 +18,9 @@ public interface EsService {
 
     void search()throws Exception;
 
-    void search2()throws Exception;
+    void searchAnalyzer()throws Exception;
 
-    void searching()throws Exception;
+    void paginate()throws Exception;
 
     void searchSort() throws Exception;
 

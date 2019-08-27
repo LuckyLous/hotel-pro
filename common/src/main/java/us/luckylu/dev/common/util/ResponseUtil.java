@@ -25,7 +25,7 @@ public class ResponseUtil {
      */
     public static <T> ResponseDto<T> getSuccessRsp(T data) {
         ResponseDto rspDto = new ResponseDto();
-        rspDto.setErrCode(200);
+        rspDto.setCode(200);
         rspDto.setMessage("");
         if (data != null) {
             rspDto.setData(data);
@@ -49,7 +49,7 @@ public class ResponseUtil {
      */
     public static <T> ListResponseDto<T> getSuccessListRsp(List<T> data) {
         ListResponseDto responseListDto = new ListResponseDto<>();
-        responseListDto.setErrCode(200);
+        responseListDto.setCode(200);
         responseListDto.setMessage("");
         if (data != null) {
             responseListDto.setData(data);
@@ -73,7 +73,7 @@ public class ResponseUtil {
      */
     public static <T> PagerResponseDto<T> getSuccessPagerRsp(Pager<T> pager) {
         PagerResponseDto<T> rspDto = new PagerResponseDto<>();
-        rspDto.setErrCode(200);
+        rspDto.setCode(200);
         rspDto.setMessage("");
         if (pager != null) {
             rspDto.setData(pager);
@@ -89,7 +89,7 @@ public class ResponseUtil {
      */
     public static ResponseDto getErrorRsp(Integer code, String msg) {
         ResponseDto rspDto = new ResponseDto();
-        rspDto.setErrCode(code);
+        rspDto.setCode(code);
         rspDto.setMessage(msg);
         return rspDto;
     }
