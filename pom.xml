@@ -45,7 +45,7 @@
         <aliyun.sdk.dysmsapi.version>1.0.0</aliyun.sdk.dysmsapi.version>
         <aliyun.java.sdk.core>3.7.1</aliyun.java.sdk.core>
         <aliyun.java.sdk.vod>2.15.0</aliyun.java.sdk.vod>
-        <common.io.version>2.4</common.io.version>
+        <common.io.version>2.7</common.io.version>
         <commons.lang.version>3.7</commons.lang.version>
         <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
         <druid.version>1.0.9</druid.version>
