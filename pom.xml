@@ -64,7 +64,7 @@
         <mysql.version>5.1.30</mysql.version>
 
         <org.freemarker.version>2.3.23</org.freemarker.version>
-        <poi.version>3.17</poi.version>
+        <poi.version>4.1.1</poi.version>
         <qiniu.version>7.2.6</qiniu.version>
         <qcloud.cos.version>4.4</qcloud.cos.version>
 
